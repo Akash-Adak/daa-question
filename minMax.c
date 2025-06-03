@@ -24,14 +24,14 @@ int main(){
   printf("emter no of elements:");
     int n;
     scanf("%d",&n);
-    int a[n];
+    int arr[n];
     printf("enter elements:");
     for(int i=0;i<n;i++){
         scanf("%d",&a[i]);
     }
    min=arr[0];
    max=arr[0];
-   findMinMax(arr,0,5);
+   findMinMax(arr,0,n-1);
    printf("min is:%d \n",min);
    printf("max is:%d",max);
  
