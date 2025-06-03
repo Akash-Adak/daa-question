@@ -1,57 +1,63 @@
 #include<stdio.h>
-void merge(int arr[],int s,int m,int e){
-   
-    int n1=m-s+1;
-
-    int n2=e-m;
-
-    int a1[n1],a2[n2];
-
-    for(int i=0;i<n1;i++) 
-        a1[i]=arr[s+i];
-
-    for(int i=0;i<n2;i++)
-        a2[i]=arr[m+1+i];
-
-    int  i=0,j=0,k=s;
-                            //    a1=[1,3,5]    a2=[2,5,7]
+void merge(int arr[],int s,int mid,int e){
+    int i,j,k;
+    int n1=mid-s+1;
+    int n2=e-mid;
+    int left[n1],right[n2];
+    for(i=0;i<n1;i++){
+        left[i]=arr[s+i];
+    } 
+    for(j=0;j<n2;j++){
+        right[j]=arr[mid+1+j];
+    }
+    i=0;
+    j=0;
+    k=s;
     while(i<n1 && j<n2){
-        if(a1[i]<= a2[j]) {
-            arr[k]=a1[i];
+        if(left[i]<= right[j]){
+            arr[k]=left[i];
             i++;
-        }
-        else{
-            arr[k]=a2[j];
-             j++;
-        }
-        k++;
+            }
+            else{
+                arr[k]=right[j];
+                j++;
+                }
+                k++;
+
     }
     while(i<n1 ){
-        arr[k]=a1[i];
+        arr[k]=left[i];
         i++;
         k++;
     }
     while(j<n2 ){
-        arr[k]=a2[j];
+        arr[k]=right[j];
         j++;
         k++;
         }
-
+    
 }
-void mergeSort(int arr[],int start,int end){
-    int mid=start+(end-start)/2;
-    if(start<end){
-        mergeSort(arr,start,mid);
-        mergeSort(arr,mid+1,end);
-        merge(arr,start,mid,end);
+void mergesort(int arr[],int s,int e){
+    int mid=(s+e)/2;
+    if(s<e){
+        mergesort(arr,s,mid);
+        mergesort(arr,mid+1,e);
+        merge(arr,s,mid,e);
     }
 }
 int main(){
-   int arr[]={2,7,4,1,3,9}; 
-   mergeSort(arr,0,5);
-   printf("sorted are  :");
-    for(int i=0;i<6;i++){
-        printf("%d ",arr[i]);
+    printf("emter no of elements:");
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    printf("enter elements:");
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
+    mergesort(a,0,n-1);
+    printf("sorted are  :");
+    for(int i=0;i<n;i++){
+        printf("%d ",a[i]);
     }
     return 0;
 }
