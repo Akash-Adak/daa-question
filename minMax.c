@@ -21,7 +21,14 @@
     findMinMax(arr,mid+1,high);
  }
 int main(){
-   int arr[]={2,7,4,1,3,9}; 
+  printf("emter no of elements:");
+    int n;
+    scanf("%d",&n);
+    int a[n];
+    printf("enter elements:");
+    for(int i=0;i<n;i++){
+        scanf("%d",&a[i]);
+    }
    min=arr[0];
    max=arr[0];
    findMinMax(arr,0,5);
